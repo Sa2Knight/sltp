@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta charset="utf-8"/>
+	<title>共同プログラミング学習環境 SLTP</title>
+
+	<!--CSS-->
+	<link href="jquery/css/ui-lightness/jquery-ui-1.10.4.css" rel="stylesheet" />
+	<link href="jquery/jQuery-contextMenu/jquery.contextMenu.css" rel="stylesheet" />
+
+	<!--jQuery-->
+	<script type="text/javascript" src="./jquery/js/jquery-1.10.2.js"></script>
+	<script src="jquery/jquery-ui-1.11.0/jquery-ui.js"></script>
+	<script src="jquery/jQuery-contextMenu/jquery.contextMenu.js"></script>
+  <!--<script src="js/nicoscreen.js"></script>-->
+  
+	<!--WebRTC-->	
+    <script type="text/javascript" src="js/peer.min.js"></script>
+
+	<!--Aceエディタ-->
+	<script src="ace/ace.js"></script>
+	
+	<!--ショートカットキースクリプト-->
+	<script src="./js/shortcut.js"></script>
+
+	<!--Main-->
+    <script src="js/Trafficer.js"></script>
+	<script type="text/javascript" src="./js/sltp_client.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="./css/ClientStyleSheet1.css" type="text/css" />
+
+</head>
+
+<body>
+
+	<!--ヘッダー-->
+	<div id="header">
+
+		<!--タイトルロゴ-->
+		<div id="title">
+			<h1>SLTP</h1>
+		</div>
+
+		<!--メインメニュー-->
+		<div id="menu">
+			<button id="Button-SelectLangage" class="mainMenuButton">言語</button>
+			<div id="dropmenu_lang">
+				<p><input type="radio" id="c"			value="c"			name="lang" checked /><label for="c">C　　　　</label></p>
+				<p><input type="radio" id="cpp"		value="cpp"		name="lang" /><label for="cpp">C++　　　　</label></p>
+				<p><input type="radio" id="py" value="py" name="lang" /><label for="py">Python　</label></p>
+				<p><input type="radio" id="rb" value="rb" name="lang" /><label for="rb">Ruby　　</label></p>
+				<p><input type="radio" id="php" value="php" name="lang" /><label for="php">PHP　　　　</label></p>
+				<p><input type="radio" id="js"		value="js"		name="lang" /><label for="js">JavaScript</label></p>
+				<p><input type="radio" id="html"	value="html"	name="lang" /><label for="html">HTML　　</label></p>
+			</div>
+			<button id="Button-NewFile" class="mainMenuButton">新規</button>
+			<button id="Button-OpenFile" class="mainMenuButton">開く</button>
+			<button id="Button-SaveFile" class="mainMenuButton">保存</button>
+      <div id="dropmenu_save">
+        <p id="saveToWeb">Webブラウザに保存</p>
+        <p id="saveToLocal">ローカルにダウンロード</p>
+      </div>
+			<button id="Button-Run" class="mainMenuButton">実行</button>
+      <button id="Button-Config" class="mainMenuButton">設定</button>
+			</div>
+	</div>
+
+	<div id="content">
+
+		<!--メインコンテンツ-->
+    <div id="nicoscreen">
+
+      <!--エディタ-->
+      <div id="editorArea"></div>
+
+      <!--メイン右カラム-->
+      <div id="rightColumn">
+
+        <!--サブメニュー-->
+        <div id="subMenu">
+
+          <!--サブメニュー切り替えようタブ-->
+          <ul>
+            <li style="text-align:center"><a href="#subMenu-1">接続情報</a></li>
+            <li><a href="#subMenu-2" id="subMenu_stdInput">標準入力</a></li>
+            <li><a href="#subMenu-3">メモ</a></li>
+          </ul>
+
+          <!--接続メニュー-->
+          <div id="subMenu-1">
+
+            <!--接続メッセージ出力用-->
+            <div id="serverConnectionMessage"></div>
+
+            <div id="connectionInformation" style="display:none">
+              <!--接続用URL表示用-->
+              <p>他のユーザーに接続してもらう</p>
+              <div id="connectionURLArea"></div>
+
+              <br />
+
+              <!--接続可能ピアリスト-->
+              <p>他のユーザーに接続する</p>
+              <div id="peerlist">
+              </div>
+              <div id="connectionMessage">接続中...</div>
+            </div>
+          </div>
+
+          <!--標準入力-->
+          <div id="subMenu-2">
+
+            <!--C,C++,Python,Ruby用標準入力UI-->
+            <textarea id="stdinArea" spellcheck="false" style="display:block"></textarea>
+
+            <!--PHP用標準入力UI-->
+            <div id="PHPInputer_container" style="display:none">
+              <div id="FirstPHPField">
+                <select class="PHPInputer-mode PHPInputer" id="PHPInputer-mode0">
+                  <option>メソッドを選択してください</option>
+                  <option>GET</option>
+                  <option>POST</option>
+                </select>
+                <input type="text" class="PHPInputer-name PHPInputer" id="PHPInputer-name0" placeholder="要素名" />
+                <input type="text" class="PHPInputer-value PHPInputer" id="PHPInputer-value0" placeholder="値" />
+                <input type="button" class="PHPInputer-remove" id="PHPInputer-remove0" value="削除" />
+              </div>
+            </div>
+          </div>
+
+          <!--共有オプション-->
+          <div id="subMenu-3">
+            <textarea id="memoArea" spellcheck="false"></textarea>
+          </div>
+
+        </div>
+
+
+        <!--４人分のビデオを表示するエリア-->
+        <div id="videoArea">
+          <div id="uploder-sign1" class="uploder-sign-area"><img src="image/lamp001.png" class="uploder-sign-image" /></div>
+          <div id="uploder-sign3" class="uploder-sign-area"><img src="image/lamp001.png" class="uploder-sign-image" /></div>
+          <div id="uploder-sign2" class="uploder-sign-area"><img src="image/lamp001.png" class="uploder-sign-image" /></div>
+          <div id="uploder-sign4" class="uploder-sign-area"><img src="image/lamp001.png" class="uploder-sign-image" /></div>
+          <div id="uploder-sign6" class="uploder-sign-area"><img src="image/lamp001.png" class="uploder-sign-image" /></div>
+          <div id="uploder-sign5" class="uploder-sign-area"><img src="image/lamp001.png" class="uploder-sign-image" /></div>
+          <video poster="./image/bg_video.png" id="video1" class="Video_Groupe"></video>
+          <video poster="./image/bg_video.png" id="video3" class="Video_Groupe"></video>
+          <video poster="./image/bg_video.png" id="video2" class="Video_Groupe"></video>
+          <video poster="./image/bg_video.png" id="video4" class="Video_Groupe"></video>
+          <video poster="./image/bg_video.png" id="video6" class="Video_Groupe"></video>
+          <video poster="./image/bg_video.png" id="video5" class="Video_Groupe"></video>
+        </div>
+
+      </div>
+
+    </div>
+
+		<!--フッター-->
+		<div id="footer">
+
+			<!--実行領域-->
+			<div id="runArea">
+				<div id="runAreaHeader">
+					<span id="runAreaTitle">実行結果</span>
+				</div>
+				<div id="runAreaMain"></div>
+			</div>
+
+			<!--チャット領域-->
+			<div id="chatArea">
+
+				<!--チャットログ領域-->
+				<div id="chatLog"></div>
+
+				<!--チャットUI-->
+				<div id="chatUI">
+					<input type="text" id="Text-Message" spellcheck="false" />
+					<input type="button" id="Button-FileSend" value="ファイル" />
+					<input type="button" id="Button-Send" value="送信" />
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!--ユーザー情報入力フォーム-->
+	<div id="InputDialog" title="ユーザー情報入力フォーム">
+		<h4>共同プログラミング学習環境SLTPにようこそ！</h4>
+		<table>
+			<tr id="nameArea">
+				<td>お名前</td>
+				<td><input type="text" id="userName" class="inputUserInformation" placeholder="ハンドルネーム可" maxlength="10"/></td>
+			</tr>
+			<tr id="passArea">
+				<td>パスワード</td>
+				<td><input type="password" id="pass" class="inputUserInformation" placeholder="接続者を制限する場合入力" maxlength="15"/></td>
+			</tr>
+			<tr id="mediaCheckArea">
+				<td colspan="2">
+					<input type="checkbox" id="useCameraCheck"/>Webカメラを利用する
+					<input type="checkbox" id="useMikeCheck" />マイクを利用する
+				</td>
+			</tr>
+      <tr id="AutoConnectionCheckArea">
+        <td colspan="2">
+          <input type="checkbox" id="autoConnectionCheck" checked/>URLを元に自動接続を行う
+        </td>
+      </tr>
+			<tr id="serverSelectArea">
+				<td>サーバー</td>
+				<td>
+					<select id="serverSelecter" class="inputUserInformation">
+						<option value="sltpservernode001">Server001</option>
+						<option value="sltpservernode002">Server002</option>
+						<option value="sltpservernode003">Server003</option>
+						<option value="sltpservernode004">Server004</option>
+						<option value="sltpservernode005">Server005</option>
+            <option value="another">その他</option>
+					</select>
+				</td>
+			</tr>
+      <tr id="anotherServerArea" style="display:none">
+        <td></td>
+        <td>
+          <input type="text" id="inputFreeServerName" class="inputUserInformation" placeholder="サーバー名を入力してください" />
+        </td>
+      </tr>
+		</table>
+		<div id="dialogHintArea">ヒント：</div>
+	</div>
+
+  <!--設定フォーム-->
+  <div id="ConfigDialog" title="設定">
+    <table id="optionTable">
+      <tbody>
+        <tr>
+          <td colspan="2" class="tablehead">
+            共有設定
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align:center"><input type="checkbox" id="checkbox-recv" checked />受信</td>
+          <td style ="text-align:center"><input type="checkbox" id="checkbox-send" checked />送信</td>
+        </tr>
+
+        <tr>
+          <td colspan="2" class="tablehead">
+            <div style="margin-top:10px">エディタ設定</div>
+          </td>
+        </tr>
+        <tr>
+          <td>フォントサイズ</td>
+          <td><input type="range" id="fontsizeSlider" value="16" min="10" max="40" /></td>
+        </tr>
+        <tr>
+          <td>タブ数</td>
+          <td><input type="range" id="tabindexSlider" value="4" min="2" max="10"></td>
+        </tr>
+        <tr>
+          <td>テーマ</td>
+          <td>
+            <select class="optionSelecter" name=theme id="themeSelecter">
+              <option value='ambiance'> ambiance</option>
+              <option value='chaos'> chaos</option>
+              <option value='chrome'> chrome</option>
+              <option value='clouds'> clouds</option>
+              <option value='clouds_midnight'> clouds_midnight</option>
+              <option value='cobalt'> cobalt</option>
+              <option value='crimson_editor'> crimson</option>
+              <option value='dawn'> dawn</option>
+              <option value='dreamweaver'> dreamweaver</option>
+              <option value='eclipse' selected> eclipse</option>
+              <option value='github'> github</option>
+              <option value='idle_fingers'> idle_fingers</option>
+              <option value='katzenmilch'> katzenmilch</option>
+              <option value='kuroir'> kuroir</option>
+              <option value='merbivore'> merbivore</option>
+              <option value='merbivore_soft'> merbivore_soft</option>
+              <option value='mono_industrial'> mono_industrial</option>
+              <option value='monokai'> monokai</option>
+              <option value='pastel_on_dark'> pastel_on_dark</option>
+              <option value='solarized_dark'> solarized_dark</option>
+              <option value='solarized_light'> solarized_light</option>
+              <option value='terminal'> terminal</option>
+              <option value='textmate'> textmate</option>
+              <option value='tomorrow'> tomorrow</option>
+              <option value='tomorrow_night'> tomorrow_night</option>
+              <option value='tomorrow_night_blue'> blue</option>
+              <option value='tomorrow_night_bright'> tbright</option>
+              <option value='tomorrow_night_eighties'> eighties</option>
+              <option value='twilight'> twilight</option>
+              <option value='vibrant_ink'> vibrant_ink</option>
+              <option value='xcode'> xcode</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><div style="margin-top:10px">文字コード</div></td>
+          <td>
+            <select class="optionSelecter" name=charset id="charSetSelecter">
+              <option value='utf-8'>UTF-8(推奨)</option>
+              <option value='shift_jis'>Shift-JIS</option>
+              <option value='euc-jp'>EUC-JP</option>
+              <option value='iso-2022-jp'>ISO-2022-JP</option>
+            </select>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+	<!--ダミーUI-->
+	<input type="file" id="fakeFileOpen" style="display:none" />
+	<input type="file" id="fakeSendFile" style="display:none" />
+	<div id="fakeContextMenu" style="display:none"></div>
+</body>
+</html>

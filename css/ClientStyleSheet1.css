@@ -1,0 +1,426 @@
+﻿
+/*全要素*/
+*{
+	margin : 0;
+	padding : 0;
+	border : 0;
+	word-wrap : break-word;
+}
+
+/*ボディ要素*/
+body {
+    overflow : hidden;
+}
+
+
+/*ヘッダー領域（タイトル＋メインメニュー）*/
+#header{
+	position : absolute;
+	left : 0;
+	right : 0;
+	top : 0;
+	height : 60px;
+	background-image : url(../image/bg_header.jpg);
+	z-index : 20;
+}
+
+/*タイトル領域*/
+#title{
+	position : absolute;
+	width : 140px;
+	height : 60px;
+}
+
+/*メインメニュー領域*/
+#menu{
+	position : absolute;
+	right : 10px;
+	margin-top : 10px;
+}
+
+/*言語選択用プルダウンメニュー*/
+#dropmenu_lang{
+	border : 1px solid silver;
+	display : none;
+	position : absolute;
+	width : 100px;
+	background : rgb(243,243,243);
+}
+
+/*保存メニュ用プルダウンメニュー*/
+#dropmenu_save{
+	border : 1px solid silver;
+	display : none;
+	position : absolute;
+	width : 175px;
+	background : rgb(243,243,243);
+}
+#dropmenu_save > p {
+    cursor : pointer;
+}
+
+/*コンテンツ(ヘッダー以外の要素全体)*/
+#content{
+	position : absolute;
+	left : 0;
+	right : 0;
+	top : 60px;
+	bottom : 0px;
+	background-image : url(../image/bg.jpg);
+	z-index : 3;
+}
+
+/*メインコンテンツ領域（可変幅領域全体）*/
+#nicoscreen{
+	width : 100%;
+	height : 70%;
+}
+
+/*エディタ領域*/
+#editorArea {
+	width: 70%;
+	height: 100%;
+	float: left;
+}
+
+/*メイン右カラム(サブメニュー領域 + ビデオ領域)*/
+#rightColumn{
+	width: 30%;
+	height: 100%;
+	float: right;
+}
+
+/*サブメニュー領域全体*/
+#subMenu{
+	width : 100%;
+	height : 45%;
+	overflow:hidden;
+}
+
+/*サブメニューのタブ全体*/
+#subMenu > ul{
+	position : absolute;
+	width : 100%;
+	text-align : center;
+	margin-bottom : 2px;
+}
+
+/*サブメニューのタブ*/
+#subMenu > ul > li{
+	width : 33.33%;
+	text-align : center;
+	font-size : 16px;
+}
+
+/*接続メニュー*/
+#subMenu-1{
+	width : 100%;
+	height : 100%;
+	font-size : 14px;
+	background-color : rgb(244,244,244);
+	overflow-y : auto;
+}
+
+/*接続メニュー本体*/
+#subMenu-1 > div {
+	margin-top : 25px;
+}
+
+/*「システムの準備中です」*/
+#serverConnectionMessage {
+	color : red;
+	margin-bottom : 10px;
+}
+
+/*他のクライアントリスト PHP実行のリンク*/
+.nonConnectPeers , .phpLink{
+	color : blue;
+	text-decoration : underline;
+	cursor : pointer;
+}
+
+.ConnectPeers {
+    text-decoration : underline;
+	cursor : pointer;
+}
+
+/*「接続中...」*/
+#connectionMessage {
+	display : none;
+	color : red;
+}
+
+/*標準入力領域 メモ領域*/
+#subMenu-2,#subMenu-3{
+	width : 100%;
+	height : 100%;
+	font-size : 16px;
+	background-color : rgb(244,244,244);
+}
+
+/*標準入力用テキストエリア , メモ用テキストエリア*/
+#subMenu textarea{
+	position : absolute;
+	left : 1px;
+	top : 22px;
+	width : 98%;
+	bottom : 2px;
+	border : 1px solid silver;
+	margin : 2px;
+	resize : none;
+}
+
+/*PHPの入力領域*/
+#PHPInputer_container {
+    position : relative;
+    height : 100%;
+    margin-top : 30px;
+    margin-left : 5px;
+    overflow-y: auto;
+    overflow-x: scroll;
+    text-wrap : none;
+}
+.PHPInputer-mode {
+    width: 25%;
+    word-wrap : normal;
+}
+.PHPInputer-name {
+    width: 23%;
+}
+.PHPInputer-value {
+    width: 23%;
+}
+.PHPInputer-remove {
+    width: 20%;
+    margin : 1px 1px 1px 1px;
+    padding : 1px 1px 1px 1px;
+    border : 1px 1px 1px 1px groove;
+    font-size : 10px;
+}
+
+
+
+/*オプション*/
+#optionTable select {
+    width : 160px;
+}
+.tablehead {
+	font-weight : bold;
+	text-align : center;
+}
+
+/*ビデオ領域*/
+#videoArea {
+	width : 100%;
+	height : 55%;
+}
+/*個々のビデオに割り当てられるクラス*/
+.Video_Groupe {
+	width: 33.333%;
+	height: 50%;
+}
+
+/*ビデオ左上*/
+#video1 {
+	position: relative;
+	top: 0%;
+	left: 0%;
+	float : left;
+	z-index : 10;
+	
+}
+
+/*ビデオ真ん中上*/
+#video2 {
+	position: relative;
+	float : right;
+}
+
+/*ビデオ右上*/
+#video3 {
+	position : relative;
+	float : right;
+}
+
+/*ビデオ左下*/
+#video4 {
+	position: relative;
+	clear : both;
+	float : left;
+}
+
+/*ビデオ真ん中下*/
+#video5 {
+	position: relative;
+	float: right;
+}
+
+/*ビデオ右下*/
+#video6 {
+	position: relative;
+	float : right;
+}
+
+/*更新通知エリア*/
+.uploder-sign-area{
+    position : absolute;
+    z-index : 999;
+    display : none;
+    text-align : center;
+    vertical-align : bottom;
+}
+
+/*更新通知アイコン*/
+.uploder-sign-image {
+    width: auto;
+    height: 50%;
+}
+
+/*フッター領域全体(実行結果領域＋テキストチャット領域)*/
+#footer{
+	width : 100%;
+	height : 30%;
+	z-index : 1;
+}
+
+/*実行領域*/
+#runArea{
+	width : 70%;
+	height : 100%;
+	float : left;
+	background-color : silver;
+	overflow-wrap : break-word;
+	overflow-x : hidden;
+	overflow-y : auto;
+}
+
+/*「実行結果」リンクを表示する領域*/
+#runAreaTitle{
+	width : 70px;
+	text-decoration : underline;
+	cursor : pointer;
+}
+
+/*「実行結果」リンク*/
+#runAreaHeader{
+	padding-bottom : 15px;
+	padding-left : 10px;
+}
+
+/*実行結果本体*/
+#runAreaMain {
+	padding-left : 10px;
+}
+
+/*テキストチャット領域全体*/
+#chatArea {
+	position : relative;
+	width: 30%;
+	height: 100%;
+	float: right;
+	background-color : gray;
+	z-index : 5;
+}
+
+/*テキストチャットを表示する領域*/
+#chatLog{
+	position : absolute;
+	top : 0%;
+	bottom : 22px;
+	left : 0%;
+	right : 0%;
+	overflow-y : scroll;
+}
+
+/*テキストチャットのUIを表示する領域*/
+#chatUI{
+	position : absolute;
+	width : 100%;
+	height : 22px;
+	bottom : 3px;
+}
+
+/*テキストチャットの入力用テキストボックス*/
+#Text-Message{
+	position : absolute;
+	left : 3px;
+	width : 65%;
+	bottom : 0;
+}
+
+/*「ファイル」ボタン*/
+#Button-FileSend{
+	position:absolute;
+	left : 65%;
+	width : 15%;
+	margin-left : 3%;
+	margin-right : 1%;
+	bottom : 0;
+	overflow-wrap: normal;
+}
+
+/*「送信」ボタン*/
+#Button-Send{
+	position : absolute;
+	width : 15%;
+	right : 0%;
+	margin-right : 1%;
+	bottom : 0;
+	overflow-wrap: normal;
+}
+
+/*ユーザー情報入力ダイアログ*/
+#InputDialog * {
+	padding : 3px;
+}
+.inputUserInformation {
+	width : 250px;
+}
+.ui-dialog-buttonpane , .ui-dialog {
+	background-color : rgb(200,200,200);
+}
+#dialogHintArea {
+	font-size : 12px;
+	height : 60px;
+}
+
+/*トースト*/
+.toast-cont {
+	text-align: center;
+	position: fixed;
+	top: 5px;
+	width: 100%;
+	z-index:999;
+}
+.toast {
+	display: inline-block;
+	color: #fff;
+	border-radius: 4px;
+	padding: 5px 9px;
+	border: none;
+	z-index: 999;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+	font-size: 22px;
+    cursor : pointer;
+}
+
+/*テキストチャットのテキストの共通クラス*/
+.Div_TextChatClass{
+	font-size : 13px;
+	margin-left : 3px;
+}
+
+/*テキストチャットにおける自身の発言テキスト*/
+.Div_MyResponseText {
+
+}
+
+/*テキストチャットにおける他者の発言テキスト*/
+.Div_AnotherResponseText {
+
+}
+
+/*テキストチャットにおける各種情報テキスト*/
+.Div_InformationText {
+	font-weight : bold;
+}

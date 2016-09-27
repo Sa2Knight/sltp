@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>SLTP SERVER NODE</title>
+  <link href="css/ServerStyleSheet.css" rel="stylesheet" />
+  <script type="text/javascript" src="js/peer.min.js"></script>
+  <script src="jquery/js/jquery-1.10.2.js"></script>
+  <script src="js/Trafficer.js"></script>
+  <script src="js/debugger.js"></script>
+  <script src="js/sltp_server.js" charset="utf-8"></script>
+</head>
+<body>
+
+  <div id="container">
+
+    <div id="header"><h2>SLTP サーバーノード</h2></div>
+    <div id="main">
+
+      <!--左-->
+      <div id="leftColumn">
+        <h3>サーバーメニュー</h3>
+        <ul id="leftMenuList">
+          <li class="menus start startdefault" id="sltpservernode001">SLTPServer001</li>
+          <li class="menus start startdefault" id="sltpservernode002">SLTPServer002</li>
+          <li class="menus start startdefault" id="sltpservernode003">SLTPServer003</li>
+          <li class="menus start startdefault" id="sltpservernode004">SLTPServer004</li>
+          <li class="menus start startdefault" id="sltpservernode005">SLTPServer005</li>
+          <li class="menus start" id="freeNameStart">Another</li>
+          <li class="menus start" id="randomNameStart">Rondom(推奨)</li>
+          <li class="menus stop" style="display:none">ServerStop</li>
+        </ul>
+      </div>
+
+      <!--中央-->
+      <div id="centerColumn">
+
+        <h3 id="status">サーバーリストから起動するサーバーを選択してください。</h3>
+        <ul id="log">
+        
+        </ul>
+
+      </div>
+
+      <!--右-->
+		<div id="rightColumn">
+
+        <!--コンパイルサーバーの設定-->
+        <div id="compilerConfigArea">
+          <h4>コンパイラパス</h4>
+          <br />
+          <select id="compilerList" style="width:95%">
+            <option value="http://localhost/www/compiler.php">http://localhost/www/compiler.php</option>
+            <option value="http://124.155.52.56:60000/www/compiler.php">http://124.155.52.56:60000/www/compiler.php</option>
+            <option value="http://172.16.149.188/www/compiler.php">http://172.16.149.188/www/compiler.php</option>
+            <option value="その他">その他</option>
+          </select>
+          <br />
+          <input type="text" id="freecompiler" style="width : 90%; display : none; margin-top : 5px"><br />
+          <div id="resetCompier">
+            <a href="#">コンパイルサーバをリセットする</a>
+          </div>
+        </div>
+		
+		<!--クライアントURLエリア-->
+		<div id="clientURLArea">
+			<h4>クライアント用URL</h4>
+			<br />
+			<a id="clientURL" href="" target = "_blank"></a>
+		</div>
+
+		<!--コネクションリストエリア-->
+        <div id="connectionListArea">
+          <hr />
+          <h4>接続済みクライアントリスト</h4>
+          <ul id="connectionList"></ul>
+        </div>
+
+        <!--コネクション詳細エリア-->
+        <div id="connectionInfoArea">
+          <hr />
+          <div id="info"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
